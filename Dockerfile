@@ -1,8 +1,11 @@
 FROM node:alpine
 
-LABEL maintainer="ksdn117@gmail.com"
+RUN npm install ws 
+RUN mkdir /app && \
+    chmod a+rw /app
+ADD server.js /app/server.js
+WORKDIR /app
 
-ADD run.sh /run.sh
-CMD ["/run.sh"]
+CMD ["node", "server.js"]
 
-EXPOSE 8010
+EXPOSE 8080
