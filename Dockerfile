@@ -1,11 +1,13 @@
-FROM node:alpine
+FROM registry.access.redhat.com/ubi8/nodejs-12
 
-RUN npm install ws 
-RUN mkdir /app && \
-    chmod a+rw /app
-ADD server.js /app/server.js
-WORKDIR /app
+# Add application sources
+ADD server.js .
 
+# Install the dependencies
+RUN npm install ws
+
+# Run application
 CMD ["node", "server.js"]
 
 EXPOSE 8080
+
