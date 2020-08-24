@@ -25,10 +25,4 @@ connected (press CTRL+C to quit)
 >
 ```
 
-### Check your container log
-```javascript
-npm info ok
-Server started
-Received from client: Hello world
-```
-It works!!!
+### 

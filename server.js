@@ -12,7 +12,7 @@ const server = http.createServer(function (request, res) {
   // process HTTP request.
   fs.readFile(__dirname + "/index.html")
     .then(contents => {
-      result = contents.toString().replace(/%count%/g, CLIENTS.length);
+      result = contents.toString().replace(/%count%/g, CLIENTS.length).replace(/%hostname%/g,process.env.HOSTNAME || 'localhost');
       res.setHeader("Content-Type", "text/html");
       res.writeHead(200);
       res.end(result);
