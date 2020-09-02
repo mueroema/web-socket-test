@@ -30,14 +30,15 @@ CLIENTS = [];
 
 wss.on('connection', function (ws) {
   CLIENTS.push(ws);
+  if ( process.env.DEBUG == "true" ) { console.log('open Session: %s', ws)};
   ws.on('message', function (message) {
-    console.log('Received from client: %s', message);
+    if ( process.env.DEBUG == "true" ) { console.log('Received from client: %s', message)};
     ws.send('Server received from client: ' + message);
   });
-  ws.on('close', function (ws) { CLIENTS.pop(ws)})
+  ws.on('close', function (ws) {
+    if ( process.env.DEBUG == "true" ) { console.log('close Session: %s', ws)}; 
+    CLIENTS.pop(ws);
+  })
 });
 
 server.listen(8080);
-
-
-
